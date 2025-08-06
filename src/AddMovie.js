@@ -5,15 +5,23 @@ function AddMovie({ onAdd }) {
   const [description, setDescription] = useState("");
   const [posterURL, setPosterURL] = useState("");
   const [rating, setRating] = useState("");
+  const [trailer, setTrailer] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !description || !posterURL || !rating) return;
-    onAdd({ title, description, posterURL, rating });
+    onAdd({
+      title,
+      description,
+      posterURL,
+      rating,
+      trailer: trailer || "",
+    });
     setTitle("");
     setDescription("");
     setPosterURL("");
     setRating("");
+    setTrailer("");
   };
 
   return (
@@ -35,6 +43,12 @@ function AddMovie({ onAdd }) {
         placeholder="Poster URL"
         value={posterURL}
         onChange={(e) => setPosterURL(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Trailer URL (YouTube embed)"
+        value={trailer}
+        onChange={(e) => setTrailer(e.target.value)}
       />
       <input
         type="number"
